@@ -1,31 +1,40 @@
-const input = document.querySelector("#input");
+const input = document.querySelector(".guess");
 
-const plusBtn = document.querySelector("#plus");
+const check = document.querySelector(".check");
 
-const minusBtn = document.querySelector("#minus");
+const show = document.querySelector(".number");
 
-const output = document.querySelector("#output");
+const message = document.querySelector(".message");
 
-input.addEventListener("input" , click);
+let score = Number(document.querySelector(".score").value);
 
-function click(e){
+let showHighScore = document.querySelector(".highscore");
+const secretNumber = Math.trunc(Math.random() * 20 + 1);
 
-    output.textContent = e.target.value;
+let highestScore = 0;
+console.log(secretNumber);
 
-}
+check.addEventListener("click", function () {
+  if (!input.value) {
+    showmessage("No Input");
+  } else if (input.value == secretNumber) {
+    body.style.backgroundColor = "green";
+    showmessage("Yes You Are Correct🥳🥳🥳");
+    show.textContent = secretNumber;
+  } else if (input.value != secretNumber) {
+    if (input.value > secretNumber) {
+      score--;
+      highestScore.textContent = score;
 
+      showmessage("To More");
+    } else if (input.value < secretNumber) {
+      score--;
+      showHighScore.textContent = score;
+      showmessage("Too Less");
+    }
+  }
+});
 
-plusBtn.addEventListener("click" , increase);
-function increase(){
-
-  output.textContent.style.fontsize() = "25px" ;
-
-}
-
-minusBtn.addEventListener("click" , decrease(10));
-
-function decrease(size){
-
-    output.textContent.style.fontsize =  size;
-
+function showmessage(msg) {
+  message.textContent = msg;
 }
